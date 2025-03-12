@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Tracker</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h2 { color: #333; }
-        .book-list { margin-bottom: 20px; }
-    </style>
+    <title>Book List</title>
 </head>
 <body>
-    <h1>My Book Tracker</h1>
-    
+    <h1>My Reading List</h1>
     <h2>Currently Reading</h2>
-    <ul id="reading-list" class="book-list"></ul>
-    
+    <ul id="reading-list"></ul>
     <h2>Read</h2>
-    <ul id="read-list" class="book-list"></ul>
-    
+    <ul id="read-list"></ul>
+
     <script>
         async function loadBooks() {
             try {
                 const response = await fetch('books.json');
+                console.log('Response Status:', response.status);  // Check if the fetch was successful
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const books = await response.json();
-                
+                console.log('Books:', books);  // Log the books array to check if it's loaded correctly
+
+                if (!Array.isArray(books)) {
+                    throw new Error('Expected an array of books');
+                }
+
                 const readingList = document.getElementById('reading-list');
                 const readList = document.getElementById('read-list');
-                
+
+                // Clear any existing lists before adding new books
+                readingList.innerHTML = '';
+                readList.innerHTML = '';
+
                 books.forEach(book => {
                     const listItem = document.createElement('li');
                     listItem.textContent = `${book.title} by ${book.author} (Rating: ${book.rating})`;
-                    
+
                     if (book.status === "reading") {
                         readingList.appendChild(listItem);
                     } else if (book.status === "read") {
@@ -45,7 +48,7 @@
                 console.error('Error loading books:', error);
             }
         }
-        
+
         loadBooks();
     </script>
 </body>
