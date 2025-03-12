@@ -1,27 +1,67 @@
-/* Example CSS to style the book list */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
 }
 
 h1 {
     text-align: center;
+    color: #5e4b8b;
+    font-size: 36px;
+    padding: 20px;
+    background-color: #d6c4f0;
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 
 h2 {
-    color: #333;
+    color: #5e4b8b;
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
-    background-color: #fff;
-    padding: 10px;
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+li:hover {
+    background-color: #f5f0fb;
+    transform: translateY(-5px);
+}
+
+li:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+li h3 {
+    font-size: 20px;
+    margin: 0;
+    color: #5e4b8b;
+}
+
+li p {
     margin: 5px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #777;
+}
+
+li .rating {
+    color: #b04f97;
+    font-weight: bold;
+}
+
+ul li:last-child {
+    margin-bottom: 40px;
 }
