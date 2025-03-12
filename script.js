@@ -1,7 +1,9 @@
 async function loadBooks() {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyy-PpE5WXK2r5aIfPTRHMk93qMvkMc5_I5QH_GFb24FhQkgOdE8P1yt0-KiaupmMvk/exec');
+    // Fetch data from Google Sheets API (via your Google Apps Script URL)
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec'); // Updated URL
     const data = await response.json();
 
+    // Find the list elements in HTML to append books
     const readingList = document.getElementById('reading-list');
     const readList = document.getElementById('read-list');
 
@@ -9,19 +11,19 @@ async function loadBooks() {
     readingList.innerHTML = '';
     readList.innerHTML = '';
 
-    // Loop through each book and create list items
-    data.records.forEach(book => {
+    // Loop through the data and display the books based on their status
+    data.forEach(book => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${book.title} by ${book.author} (Rating: ${book.rating})`;
+        listItem.textContent = `${book.Title} by ${book.Author} (Rating: ${book.Rating})`;
 
-        // Append the book to the appropriate list based on its status
-        if (book.status === 'reading') {
-            readingList.appendChild(listItem);
-        } else if (book.status === 'read') {
-            readList.appendChild(listItem);
+        // Display based on status
+        if (book.Status === 'Reading') {
+            readingList.appendChild(listItem); // Add to 'Reading' list
+        } else if (book.Status === 'Read') {
+            readList.appendChild(listItem); // Add to 'Read' list
         }
     });
 }
 
-// Call the function to load books when the page loads
+// Call the function to load the books
 loadBooks();
