@@ -1,17 +1,18 @@
-async function loadBooks() {
-    // Fetch data from Google Sheets API (via your Google Apps Script URL)
+async function loadBooks() 
+{
+    // Fetch data from G-Sheets API (via my G-Apps Script URL)
     const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec'); // Updated URL
     const data = await response.json();
 
-    // Find the list elements in HTML to append books
+    // Find list elements
     const readingList = document.getElementById('reading-list');
     const readList = document.getElementById('read-list');
 
-    // Clear previous list items
+    // Clear previous lists
     readingList.innerHTML = '';
     readList.innerHTML = '';
 
-    // Loop through the data and display the books based on their status
+    // Loop through the data and display books based on my assigned status
     data.forEach(book => {
         const listItem = document.createElement('li');
         listItem.textContent = `${book.Title} by ${book.Author} (Rating: ${book.Rating})`;
@@ -25,5 +26,5 @@ async function loadBooks() {
     });
 }
 
-// Call the function to load the books
+// Call the function to load my books
 loadBooks();
