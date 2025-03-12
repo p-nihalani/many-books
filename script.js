@@ -1,6 +1,6 @@
 async function loadBooks() {
-    const response = await fetch('books.json');
-    const books = await response.json();
+    const response = await fetch('https://spreadsheets.google.com/feeds/list/1pu5ZR3EyPnnqlDn8nq6sKfjAsnRUHQDMryDZryqb8cc/od6/public/values?alt=json');
+    const data = await response.json();
 
     const readingList = document.getElementById('reading-list');
     const readList = document.getElementById('read-list');
@@ -9,13 +9,18 @@ async function loadBooks() {
     readingList.innerHTML = '';
     readList.innerHTML = '';
 
-    books.forEach(book => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${book.title} by ${book.author} (Rating: ${book.rating})`;
+    data.feed.entry.forEach(entry => {
+        const title = entry.gsx$title.$t;
+        const author = entry.gsx$author.$t;
+        const status = entry.gsx$status.$t;
+        const rating = entry.gsx$rating.$t;
 
-        if (book.status === 'reading') {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${title} by ${author} (Rating: ${rating})`;
+
+        if (status.toLowerCase() === 'reading') {
             readingList.appendChild(listItem); // Add to 'Reading' list
-        } else if (book.status === 'read') {
+        } else if (status.toLowerCase() === 'read') {
             readList.appendChild(listItem); // Add to 'Read' list
         }
     });
