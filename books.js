@@ -22,5 +22,5 @@
     "author": "Richard P. Rumelt",
     "status": "read",
     "rating": 0
-  }
+  },
 ]
