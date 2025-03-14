@@ -1,44 +1,120 @@
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Light background color */
+    color: #333; /* Dark text color for readability */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-h1 {
-    text-align: center;
-    color: #6a4c9c;
-    margin-top: 50px;
-}
-
-h2 {
-    color: #6a4c9c;
-    margin-left: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 20px;
-}
-
-li {
+/* Book Form Styling */
+.book-form {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     background-color: #fff;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 100%;
 }
 
-li:hover {
-    background-color: #f2f2f2;
+.book-form h2 {
+    margin: 0 0 15px;
+    color: #5c3c92; /* Purple accent color */
+}
+
+.book-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.book-form input, .book-form select {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.book-form button {
+    background-color: #5c3c92;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-ul#reading-list {
-    background-color: #e7e7f5;
+.book-form button:hover {
+    background-color: #4b2a7b;
 }
 
-ul#read-list {
-    background-color: #d5f5e6;
+/* Book List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+    max-width: 800px; /* Maximum width for the list */
+    margin: 20px 0;
+}
+
+/* Individual Book Items Styling */
+li {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li:hover {
+    background-color: #f1eaff; /* Soft hover color for better interaction */
+}
+
+/* Book Title Styling */
+li span {
+    font-weight: bold;
+}
+
+/* Currently Reading Section */
+#reading-list {
+    background-color: #f9f7ff; /* Light purple background for reading section */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Books Read Section */
+#read-list {
+    background-color: #e9f7ff; /* Light blue background for read section */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #5c3c92;
+}
+
+/* General layout improvements */
+h1 {
+    font-size: 36px;
+    color: #5c3c92;
+    text-align: center;
+    margin-bottom: 30px;
 }
