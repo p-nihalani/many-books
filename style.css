@@ -1,82 +1,77 @@
-/* Keep the form section smaller */
-.book-form {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px; /* Make the form smaller */
-    max-width: 100%;
-    z-index: 10; /* Make sure it stays on top */
-}
-
-/* Book List Styling */
-ul {
-    list-style-type: none;
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
     padding: 0;
-    width: 80%;
-    max-width: 800px;
-    margin: 20px 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Individual Book Items Styling */
-li {
-    background-color: #fff;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Hover Effect on List Items */
-li:hover {
-    background-color: #f1eaff;
-}
-
-/* Styling for the Book Title and Author */
-li span {
-    font-weight: bold;
-}
-
-/* Book Genre Styling */
-li .genre {
-    font-style: italic;
-    color: #6c757d;
-    font-size: 14px;
-}
-
-/* Books Read Section */
-#read-list {
-    background-color: #e9f7ff; /* Light blue background for read section */
-    border-radius: 10px;
-    padding: 20px;
-}
-
-/* Currently Reading Section */
-#reading-list {
-    background-color: #f9f7ff; /* Light purple background for reading section */
-    border-radius: 10px;
-    padding: 20px;
-}
-
-h2 {
-    font-size: 24px;
-    color: #5c3c92;
-    text-align: center;
-    margin-bottom: 10px;
 }
 
 h1 {
-    font-size: 36px;
-    color: #5c3c92;
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.book-form {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.book-form h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #732d91;
+}
+
+h2 {
+    margin-top: 80px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+ul li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #6c3483;
+    margin-top: 20px;
 }
