@@ -1,5 +1,5 @@
 async function loadBooks() {
-    // Fetch data from G-Sheets API (via your Google Apps Script URL)
+    // Fetch data from G-Sheets API (via my G-Apps Script URL)
     const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec'); // Updated URL
     const data = await response.json();
 
@@ -11,19 +11,55 @@ async function loadBooks() {
     readingList.innerHTML = '';
     readList.innerHTML = '';
 
-    // Loop through the data and display books based on their assigned status
-    data.forEach(book => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${book.Title} by ${book.Author} (Rating: ${book.Rating})`;
+    // Group books by genre
+    const genres = {};
 
-        // Display based on status
-        if (book.Status === 'Reading') {
-            readingList.appendChild(listItem); // Add to 'Reading' list
-        } else if (book.Status === 'Read') {
-            readList.appendChild(listItem); // Add to 'Read' list
+    data.forEach(book => {
+        // If the genre is not already in the genres object, create it
+        if (!genres[book.Genre]) {
+            genres[book.Genre] = { reading: [], read: [] };
         }
+
+        // Push books into the appropriate genre group
+        if (book.Status === 'Reading') {
+            genres[book.Genre].reading.push(book);
+        } else if (book.Status === 'Read') {
+            genres[book.Genre].read.push(book);
+        }
+    });
+
+    // Function to create book list item
+    const createBookItem = (book) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('book-item');
+        listItem.innerHTML = `${book.Title} by ${book.Author} (Rating: ${book.Rating})`;
+        return listItem;
+    };
+
+    // Render books by genre in the "Currently Reading" section
+    Object.keys(genres).forEach(genre => {
+        const genreSectionReading = document.createElement('div');
+        const genreHeaderReading = document.createElement('h3');
+        genreHeaderReading.textContent = `${genre} (Currently Reading)`;
+        genreSectionReading.appendChild(genreHeaderReading);
+        genres[genre].reading.forEach(book => {
+            genreSectionReading.appendChild(createBookItem(book));
+        });
+        readingList.appendChild(genreSectionReading);
+    });
+
+    // Render books by genre in the "Books Read" section
+    Object.keys(genres).forEach(genre => {
+        const genreSectionRead = document.createElement('div');
+        const genreHeaderRead = document.createElement('h3');
+        genreHeaderRead.textContent = `${genre} (Read)`;
+        genreSectionRead.appendChild(genreHeaderRead);
+        genres[genre].read.forEach(book => {
+            genreSectionRead.appendChild(createBookItem(book));
+        });
+        readList.appendChild(genreSectionRead);
     });
 }
 
-// Call the function to load books on page load
+// Call the function to load my books
 loadBooks();
