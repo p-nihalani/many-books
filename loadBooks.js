@@ -11,11 +11,11 @@ async function loadBooks() {
     readingList.innerHTML = '';
     readList.innerHTML = '';
 
-    // Create objects to store books by genre
+    // Create objects to store books by genre and status
     const readingGenres = {};
     const readGenres = {};
 
-    // Loop through the data and classify books by genre
+    // Loop through the data and classify books by genre and status
     data.forEach(book => {
         // Create list item
         const listItem = document.createElement('li');
@@ -35,16 +35,15 @@ async function loadBooks() {
         }
     });
 
-    // Helper function to display genres only if books exist
+    // Helper function to display genres and books, only if there are books in the genre
     function displayGenres(genreData, listElement) {
         Object.keys(genreData).forEach(genre => {
-            // Create genre header
-            const genreHeader = document.createElement('h3');
-            genreHeader.textContent = genre;
-            listElement.appendChild(genreHeader);
-
-            // Display books if there are any in this genre
+            // Only display genre if there are books in it
             if (genreData[genre].length > 0) {
+                const genreHeader = document.createElement('h3');
+                genreHeader.textContent = genre;
+                listElement.appendChild(genreHeader);
+
                 const genreList = document.createElement('ul');
                 genreData[genre].forEach(bookItem => genreList.appendChild(bookItem));
                 listElement.appendChild(genreList);
