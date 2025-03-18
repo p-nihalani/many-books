@@ -22,19 +22,20 @@ document.getElementById('bookForm').addEventListener('submit', async function (e
         const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newBook),
-            mode: 'cors' // Explicitly specify CORS mode
+            body: JSON.stringify(newBook), // Convert object to JSON string
+            mode: 'cors' // Explicitly specify CORS mode to ensure cross-origin requests are allowed
         });
 
-        // Check if the response is OK
+        // Check if the response is OK (status code 200)
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Handle response
-        const data = await response.json();
+        // Handle the response from Google Apps Script
+        const data = await response.json(); // Parse the JSON response
+
         if (data.result === 'success') {
             alert('Book added successfully!');
             document.getElementById('bookForm').reset(); // Reset the form after submission
