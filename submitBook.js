@@ -19,18 +19,17 @@ document.getElementById('bookForm').addEventListener('submit', async function (e
 
     try {
         // Send a POST request to your Google Apps Script URL to add the new book
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/YOUR_WEB_APP_URL/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newBook), // Convert object to JSON string
-            mode: 'cors', // Explicitly specify CORS mode to ensure cross-origin requests are allowed
         });
 
         // Check if the response is OK (status code 200)
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         // Handle the response from Google Apps Script
