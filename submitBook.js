@@ -24,7 +24,8 @@ document.getElementById('bookForm').addEventListener('submit', async function (e
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newBook)
+            body: JSON.stringify(newBook),
+            mode: 'cors' // Explicitly specify CORS mode
         });
 
         // Check if the response is OK
@@ -46,6 +47,3 @@ document.getElementById('bookForm').addEventListener('submit', async function (e
         alert(`An error occurred: ${error.message}`);
     }
 });
-
-// Load books on page load
-document.addEventListener('DOMContentLoaded', loadBooks);
