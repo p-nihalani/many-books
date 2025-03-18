@@ -2,7 +2,7 @@ async function loadBooks() {
     try {
         // Fetch data from G-Sheets API (via my G-Apps Script URL)
         const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec');
-        
+
         // Check if the response is OK
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
