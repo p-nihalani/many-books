@@ -12,7 +12,7 @@
     <!-- Book Input Form (Top-Right) -->
     <div class="book-form">
         <h2>Add a New Book</h2>
-        <form id="bookForm" onsubmit="event.preventDefault(); submitBook();">
+        <form id="bookForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
 
@@ -35,14 +35,11 @@
         </form>
     </div>
 
-    <h2>Currently Reading</h2>
-    <ul id="reading-list"></ul>
-
-    <h2>Books Read</h2>
-    <ul id="read-list"></ul>
+    <h2>Books List</h2>
+    <ul id="bookList"></ul>
 
     <!-- Scripts -->
-    <script src="loadBooks.js"></script> <!-- Updated file for loading books -->
     <script src="submitBook.js"></script> <!-- New file for handling form submission -->
+    <script src="loadBooks.js"></script> <!-- Updated file for loading books -->
 </body>
 </html>
