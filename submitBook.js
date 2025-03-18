@@ -25,12 +25,12 @@ document.getElementById('bookForm').addEventListener('submit', async function (e
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newBook), // Convert object to JSON string
-            mode: 'cors' // Explicitly specify CORS mode to ensure cross-origin requests are allowed
+            mode: 'cors', // Explicitly specify CORS mode to ensure cross-origin requests are allowed
         });
 
         // Check if the response is OK (status code 200)
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         // Handle the response from Google Apps Script
