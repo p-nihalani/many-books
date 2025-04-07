@@ -11,55 +11,26 @@ body {
     padding-top: 20px;
 }
 
-/* Main container for the book list */
+/* Page title */
 h1 {
     text-align: center;
     color: #6a4c8c;
 }
 
-/* Add Book Form Styles */
-.book-form {
-    background-color: #fff;
-    padding: 20px;
-    width: 250px; /* Reduced width of the form */
-    position: fixed; /* Fix it to the right */
-    top: 20px; /* Add some spacing from the top */
-    right: 20px; /* Position it on the right side */
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensure it's above other content */
-}
-
-/* Form input styles */
-.book-form input,
-.book-form select,
-.book-form button {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 15px 0;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-}
-
-.book-form button {
-    background-color: #6a4c8c;
-    color: white;
-    cursor: pointer;
-    border: none;
-}
-
-.book-form button:hover {
-    background-color: #5a3e70;
-}
-
-/* Book list section */
+/* Section headers */
 h2 {
     margin-left: 20px;
     color: #6a4c8c;
 }
 
-/* Book List Styles */
+/* Genre headers */
+h3 {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #6a4c8c;
+}
+
+/* Book list styles */
 ul {
     list-style-type: none;
     padding-left: 20px;
@@ -73,27 +44,13 @@ li {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Genre section style */
-h3 {
-    font-size: 18px;
-    margin-top: 15px;
-    color: #6a4c8c;
-}
-
-/* Prevent form overlap with book list */
+/* Spacing for book lists */
 #reading-list, #read-list {
     margin-top: 40px;
 }
 
 /* Responsive design adjustments */
 @media (max-width: 600px) {
-    .book-form {
-        width: 100%;
-        padding: 15px;
-        top: 15px; /* Adjust position for smaller screens */
-        right: 15px;
-    }
-    
     h2, h3 {
         font-size: 16px;
     }
