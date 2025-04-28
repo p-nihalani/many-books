@@ -1,6 +1,6 @@
 async function loadBooks() {
     try {
-        // Fetch data from G-Sheets API (via my G-Apps Script URL)
+        // Fetch data from G-Sheets API (via your G-Apps Script URL)
         const response = await fetch('https://script.google.com/macros/s/AKfycbyqxQcN8aZP-t1RDfjRvMYgriR6tT2yaH-3izl894LGFYYKAsxb559FN63VCZOyz6fA/exec');
 
         if (!response.ok) {
@@ -9,52 +9,46 @@ async function loadBooks() {
 
         const data = await response.json();
 
-        const readingList = document.getElementById('reading-list');
-        const readList = document.getElementById('read-list');
+        const bookList = document.getElementById('book-list');
 
-        if (!readingList || !readList) {
-            throw new Error('List elements not found in the DOM');
+        if (!bookList) {
+            throw new Error('Book list element not found in the DOM');
         }
 
-        readingList.innerHTML = '';
-        readList.innerHTML = '';
+        bookList.innerHTML = '';
 
-        const readingGenres = {};
-        const readGenres = {};
+        const genres = {};
 
         data.forEach(book => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${book.Title} by ${book.Author} (Rating: ${book.Rating})`;
+            const rating = book["My Rating"] || "Not Rated";
+            const year = book.Year ? ` (${book.Year})` : '';
 
-            if (book.Status === 'Reading') {
-                if (!readingGenres[book.Genre]) {
-                    readingGenres[book.Genre] = [];
-                }
-                readingGenres[book.Genre].push(listItem);
-            } else if (book.Status === 'Read') {
-                if (!readGenres[book.Genre]) {
-                    readGenres[book.Genre] = [];
-                }
-                readGenres[book.Genre].push(listItem);
+            // *** NOTE: No genre printed here ***
+            listItem.textContent = `${book.Title} by ${book.Author}${year} (My Rating: ${rating})`;
+
+            if (!genres[book.Genre]) {
+                genres[book.Genre] = [];
             }
+            genres[book.Genre].push(listItem);
         });
 
-        function displayGenres(genreData, listElement) {
-            Object.keys(genreData).forEach(genre => {
-                if (genreData[genre].length > 0) {
-                    const genreHeader = document.createElement('h3');
-                    genreHeader.textContent = genre;
-                    listElement.appendChild(genreHeader);
+        Object.keys(genres).forEach(genre => {
+            if (genres[genre].length > 0) {
+                const genreSection = document.createElement('section');
+                genreSection.classList.add('genre-section');
 
-                    const genreList = document.createElement('ul');
-                    genreData[genre].forEach(bookItem => genreList.appendChild(bookItem));
-                    listElement.appendChild(genreList);
-                }
-            });
-        }
+                const genreHeader = document.createElement('h3');
+                genreHeader.textContent = genre;
+                genreSection.appendChild(genreHeader);
 
-        displayGenres(readingGenres, readingList);
-        displayGenres(readGenres, readList);
+                const genreList = document.createElement('ul');
+                genres[genre].forEach(bookItem => genreList.appendChild(bookItem));
+                genreSection.appendChild(genreList);
+
+                bookList.appendChild(genreSection);
+            }
+        });
     } catch (error) {
         console.error('Error loading books:', error);
         alert(`An error occurred: ${error.message}`);
